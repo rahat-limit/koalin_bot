@@ -116,8 +116,6 @@ const resetBuisnessModel = async (ctx) => {
   }
 };
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! при команде /plan проверить !structure: {}
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const nameHandler = Telegraf.on("text", async (ctx) => {
@@ -917,6 +915,8 @@ const scheduleBreak = Telegraf.on("callback_query", async (ctx) => {
 
   if (data === "sch_sun_sat") session.push("Суббота", "Воскресенье");
 
+  if (data === 'no_sch_break') session.push('Без выходных')
+
   /////////////////////////////////////////////////////////////////////////////// ------ Data ~~~ ++!!!!!!
 
   // const candidate = await Users.findOne
@@ -988,6 +988,8 @@ const scheduleBreak_2 = Telegraf.on("callback_query", async (ctx) => {
 
   if (data === "sch_sun_sat") session.push("Суббота", "Воскресенье");
 
+  if (data === 'no_sch_break') session.push('Без выходных')
+
   /////////////////////////////////////////////////////////////////////////////// ------ Data ~~~ ++!!!!!!
 
   const db = {
@@ -1040,6 +1042,9 @@ const scheduleBreak_3 = Telegraf.on("callback_query", async (ctx) => {
   if (data === "sch_sunday") session.push("Воскресенье");
 
   if (data === "sch_sun_sat") session.push("Суббота", "Воскресенье");
+
+  if (data === 'no_sch_break') session.push('Без выходных')
+
 
   /////////////////////////////////////////////////////////////////////////////// ------ Data ~~~ ++!!!!!!
 
@@ -1441,7 +1446,7 @@ bot.command("plan", async (ctx) => {
 
   const type = candidate.buisness_acc.structure.type;
 
-  if (type === "detailed") {
+  if (type === "plain") {
     const time_from = candidate.buisness_acc.structure.work_time_from;
     const time_to = candidate.buisness_acc.structure.work_time_to;
     const session_time = candidate.buisness_acc.structure.session_for;
@@ -1481,11 +1486,10 @@ bot.command("plan", async (ctx) => {
           Math.random() * session_time)
         }${i - 1}`
       );
-      let obj = { tm: i, id };
+      let obj = { tm: i * session_time, id };
 
-      daily_schedule.concat(obj);
+      daily_schedule.push(obj);
     }
-    return;
   }
   if (type === "structural") {
     ctx.session.result = {};
@@ -2180,7 +2184,6 @@ _Время: _ ${session_for} мин.
       );
     } catch (e) {}
   } else if (data === confirm_btn_structural) {
-    // Передать в сессию якорь для понимания что было заказано (секция или место) sectionIsConfirmed || placeIsConfirmed и в конце обнулить их все sectionIsConfirmed = false && placeIsConfirmed = false
     try {
       if (sectionIsConfirmed === true && placeIsConfirmed === false) {
         const arr =
@@ -2248,14 +2251,6 @@ _Время: _ ${session_for} мин.
     } catch (e) {}
   }
 });
-
-// План
-
-// Добавлять в Корзину с информацией (-)
-// Убрать 180 мин с плана секций
-// Поменять фразы в начале бота
-
-// План
 
 async function getInfoWholeSection(
   ctx,

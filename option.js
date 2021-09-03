@@ -102,6 +102,9 @@ module.exports = {
           { text: "Воскресенье", callback_data: "sch_sunday" },
           { text: "Все выходные", callback_data: "sch_sun_sat" },
         ],
+        [
+          { text: "Без выходных", callback_data: "no_sch_break" },
+        ],
       ],
     }),
   },
