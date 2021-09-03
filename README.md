@@ -1,2 +1,2 @@
 # koalin_bot
-sec123
+sec1234
