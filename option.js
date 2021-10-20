@@ -53,7 +53,6 @@ module.exports = {
           { text: "60 Мин", callback_data: "60_break" },
           { text: "180 Минут", callback_data: "180_break" },
         ],
-        [{ text: "Без Перерыва", callback_data: "no_break" }],
       ],
     }),
   },
@@ -102,9 +101,30 @@ module.exports = {
           { text: "Воскресенье", callback_data: "sch_sunday" },
           { text: "Все выходные", callback_data: "sch_sun_sat" },
         ],
+        [{ text: "Без выходных", callback_data: "no_sch_break" }],
+      ],
+    }),
+  },
+  breakFromOptions: {
+    reply_markup: JSON.stringify({
+      inline_keyboard: [
         [
-          { text: "Без выходных", callback_data: "no_sch_break" },
+          { text: "12:00 PM", callback_data: "break_from_12_00" },
+          { text: "13:00 PM", callback_data: "break_from_13_00" },
         ],
+        [
+          { text: "12:15 PM", callback_data: "break_from_12_15" },
+          { text: "13:15 PM", callback_data: "break_from_13_15" },
+        ],
+        [
+          { text: "12:30 PM", callback_data: "break_from_12_30" },
+          { text: "13:30 PM", callback_data: "break_from_13_30" },
+        ],
+        [
+          { text: "12:45 PM", callback_data: "break_from_12_45" },
+          { text: "13:45 PM", callback_data: "break_from_13_45" },
+        ],
+        [{ text: "14:00 PM", callback_data: "break_from_14_00" }],
       ],
     }),
   },
@@ -182,19 +202,19 @@ module.exports = {
       inline_keyboard: [
         [
           { text: "06:00PM", callback_data: "work_time_to_6_00PM" },
-          { text: "09:30PM", callback_data: "work_time_to_9_30PM" },
+          { text: "09:00PM", callback_data: "work_time_to_9_00PM" },
         ],
         [
           { text: "06:15PM", callback_data: "work_time_to_6_15PM" },
-          { text: "10:00PM", callback_data: "work_time_to_10_00PM" },
+          { text: "09:30PM", callback_data: "work_time_to_9_30PM" },
         ],
         [
           { text: "06:30PM", callback_data: "work_time_to_6_30PM" },
-          { text: "10:30PM", callback_data: "work_time_to_10_30PM" },
+          { text: "10:00PM", callback_data: "work_time_to_10_00PM" },
         ],
         [
           { text: "07:00PM", callback_data: "work_time_to_7_00PM" },
-          { text: "11:00PM", callback_data: "work_time_to_11_00PM" },
+          { text: "10:30PM", callback_data: "work_time_to_10_30PM" },
         ],
         [
           { text: "07:30PM", callback_data: "work_time_to_7_30PM" },
@@ -206,10 +226,6 @@ module.exports = {
         ],
         [
           { text: "08:30PM", callback_data: "work_time_to_8_30PM" },
-          { text: "11:30PM", callback_data: "work_time_to_11_30PM" },
-        ],
-        [
-          { text: "09:00PM", callback_data: "work_time_to_9_00PM" },
           { text: "12:00PM", callback_data: "work_time_to_12_00PM" },
         ],
       ],

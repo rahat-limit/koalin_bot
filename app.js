@@ -24,6 +24,7 @@ const {
   structureOrderWithStatus_0,
   structureOrderWithStatus_1,
   confirm_delete_Form,
+  breakFromOptions,
 } = require("./option");
 const {
   structure_settings_for_places,
@@ -230,7 +231,7 @@ const work_time_from = Telegraf.on("callback_query", async (ctx) => {
   }
   if (data === "work_time_from_9_00") {
     ctx.session.work_time_from = "09:00AM";
-    await ctx.reply("До скольки ваше предприятие работает: ", workTimeTo);
+    await ctx.reply("До скольки ваше предприятие работает: ", bnmn);
     return ctx.wizard.next();
   }
   if (data === "work_time_from_9_30") {
@@ -817,79 +818,129 @@ const forBreakHandler = Telegraf.on("callback_query", async (ctx) => {
 
   if (data === "15_break") {
     ctx.session.break_for = 15;
-    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)");
+    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)", breakFromOptions);
     return ctx.wizard.next();
   }
   if (data === "30_break") {
     ctx.session.break_for = 30;
-    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)");
+    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)", breakFromOptions);
     return ctx.wizard.next();
   }
   if (data === "45_break") {
     ctx.session.break_for = 45;
-    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)");
+    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)", breakFromOptions);
     return ctx.wizard.next();
   }
   if (data === "60_break") {
     ctx.session.break_for = 60;
-    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)");
+    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)", breakFromOptions);
     return ctx.wizard.next();
   }
   if (data === "90_break") {
     ctx.session.break_for = 90;
-    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)");
+    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)", breakFromOptions);
     return ctx.wizard.next();
   }
   if (data === "120_break") {
     ctx.session.break_for = 120;
-    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)");
+    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)", breakFromOptions);
     return ctx.wizard.next();
   }
   if (data === "150_break") {
     ctx.session.break_for = 150;
-    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)");
+    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)", breakFromOptions);
     return ctx.wizard.next();
   }
   if (data === "180_break") {
     ctx.session.break_for = 180;
-    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)");
+    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)", breakFromOptions);
     return ctx.wizard.next();
   }
   if (data === "no_break") {
     ctx.session.break_for = 0;
-    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)");
+    await ctx.reply("Со cкольки перерыв: (Пример: 12.30)", breakFromOptions);
     return ctx.wizard.next();
   }
 });
 
-const fromBreakHandler = Telegraf.on("text", async (ctx) => {
+const fromBreakHandler = Telegraf.on("callback_query", async (ctx) => {
   quiteFromScene(ctx);
-  // Сколько
-  const time = ctx.message.text.split(" ")[0];
+  const data = ctx.callbackQuery.data;
 
-  if (isNaN(time)) return await ctx.reply("Повторите попытку.");
-
-  if (time.split(".")[0].length === 1)
-    return await ctx.reply("Повторите попытку.");
-
-  if (time.split(".")[1].length === 1)
-    return await ctx.reply("Повторите попытку.");
-
-  if (time.split(".")[0] > 23 && time.split(".")[1] !== 00)
-    return await ctx.reply("Повторите попытку.");
-
-  if (time.split(".")[1] > 59 || time.split(".")[0] == 00)
-    return await ctx.reply("Повторите попытку.");
-
-  ctx.session.break_from = time;
-
-  await ctx.reply(
-    "В какой день недели ваше предприятие не работает: ",
-    scheduleBreakOption
-  );
+  if (data === "break_from_12_00") {
+    ctx.session.break_from = "12:00";
+    await ctx.reply(
+      "В какой день недели ваше предприятие не работает: ",
+      scheduleBreakOption
+    );
+    return ctx.wizard.next();
+  }
+  if (data === "break_from_12_15") {
+    ctx.session.break_from = "12:15";
+    await ctx.reply(
+      "В какой день недели ваше предприятие не работает: ",
+      scheduleBreakOption
+    );
+    return ctx.wizard.next();
+  }
+  if (data === "break_from_12_30") {
+    ctx.session.break_from = "12:30";
+    await ctx.reply(
+      "В какой день недели ваше предприятие не работает: ",
+      scheduleBreakOption
+    );
+    return ctx.wizard.next();
+  }
+  if (data === "break_from_12_45") {
+    ctx.session.break_from = "12:45";
+    await ctx.reply(
+      "В какой день недели ваше предприятие не работает: ",
+      scheduleBreakOption
+    );
+    return ctx.wizard.next();
+  }
+  if (data === "break_from_13_00") {
+    ctx.session.break_from = "13:00";
+    await ctx.reply(
+      "В какой день недели ваше предприятие не работает: ",
+      scheduleBreakOption
+    );
+    return ctx.wizard.next();
+  }
+  if (data === "break_from_13_15") {
+    ctx.session.break_from = "13:15";
+    await ctx.reply(
+      "В какой день недели ваше предприятие не работает: ",
+      scheduleBreakOption
+    );
+    return ctx.wizard.next();
+  }
+  if (data === "break_from_13_30") {
+    ctx.session.break_from = "13:30";
+    await ctx.reply(
+      "В какой день недели ваше предприятие не работает: ",
+      scheduleBreakOption
+    );
+    return ctx.wizard.next();
+  }
+  if (data === "break_from_13_45") {
+    ctx.session.break_from = "13:45";
+    await ctx.reply(
+      "В какой день недели ваше предприятие не работает: ",
+      scheduleBreakOption
+    );
+    return ctx.wizard.next();
+  }
+  if (data === "break_from_14_00") {
+    ctx.session.break_from = "14:00";
+    await ctx.reply(
+      "В какой день недели ваше предприятие не работает: ",
+      scheduleBreakOption
+    );
+    return ctx.wizard.next();
+  }
 
   return ctx.wizard.next();
-  // Со-скольки
 });
 
 // scheduleBreakOption
@@ -915,7 +966,7 @@ const scheduleBreak = Telegraf.on("callback_query", async (ctx) => {
 
   if (data === "sch_sun_sat") session.push("Суббота", "Воскресенье");
 
-  if (data === 'no_sch_break') session.push('Без выходных')
+  if (data === "no_sch_break") session.push("Без выходных");
 
   /////////////////////////////////////////////////////////////////////////////// ------ Data ~~~ ++!!!!!!
 
@@ -965,7 +1016,7 @@ const scheduleBreak = Telegraf.on("callback_query", async (ctx) => {
   return ctx.scene.leave();
 });
 
-// scheduleBreakOption_2
+// scheduleBreakOption_2 jj
 const scheduleBreak_2 = Telegraf.on("callback_query", async (ctx) => {
   quiteFromScene(ctx);
   const data = ctx.callbackQuery.data;
@@ -988,7 +1039,7 @@ const scheduleBreak_2 = Telegraf.on("callback_query", async (ctx) => {
 
   if (data === "sch_sun_sat") session.push("Суббота", "Воскресенье");
 
-  if (data === 'no_sch_break') session.push('Без выходных')
+  if (data === "no_sch_break") session.push("Без выходных");
 
   /////////////////////////////////////////////////////////////////////////////// ------ Data ~~~ ++!!!!!!
 
@@ -1008,16 +1059,178 @@ const scheduleBreak_2 = Telegraf.on("callback_query", async (ctx) => {
     { structure: db }
   );
   const buisness = await Buisness.findOne({
-    buisness_telegram_id: ctx.chat.id,
+    buisness_telegram_id: ctx.from.id,
   });
   await Users.findOneAndUpdate(
-    { user_telegram_id: ctx.chat.id },
+    { user_telegram_id: ctx.from.id },
     { buisness_acc: buisness }
   );
+
+  const candidate = await Users.findOne({ user_telegram_id: ctx.from.id });
+
+  const time_from = candidate.buisness_acc.structure.work_time_from;
+  const time_to = candidate.buisness_acc.structure.work_time_to;
+  const session_time = candidate.buisness_acc.structure.session_for;
+  const workStarts =
+    candidate.buisness_acc.structure.work_time_from.split("A")[0];
+
+  const d = new Date(
+    2015,
+    0,
+    2,
+    Number(time_from.split(":")[0]),
+    time_from.split(":")[1].split("").splice(0, 2).join("")
+  );
+
+  const f = new Date(
+    2015,
+    0,
+    2,
+    Number(time_to.split(":")[0]),
+    time_to.split(":")[1].split("").splice(0, 2).join("")
+  );
+
+  const totalMinutesWB = date.subtract(f, d).toMinutes();
+
+  const session_times = Math.floor(totalMinutesWB / session_time);
+
+  const breakfromHours = candidate.buisness_acc.structure.break_from
+    .split("PM")[0]
+    .split(":")[0];
+  const breakfromMinutes = candidate.buisness_acc.structure.break_from
+    .split("PM")[0]
+    .split(":")[1];
+  const break_time_for = candidate.buisness_acc.structure.break_for;
+
+  // Break timeFor: 45, BreakFrom: 12:00, workStarts: 06:00, session_for: 60
+
+  let schedule = [];
+  let weekSch = {};
+  let key = 0;
+
+  let workStartsFromHours = workStarts.split(":")[0];
+  let workStartsFromMinutes = workStarts.split(":")[1];
+
+  try {
+    for (let i = 0; i < session_times; i++) {
+      let id = rndId(
+        30 + i,
+        `${
+          (ctx.from.id,
+          ctx.from.first_name,
+          ctx.from.last_name,
+          Math.random() * session_time)
+        }${i - 1}`
+      );
+      let { hoursTL, minutesTL } = calcTime(
+        i * session_time + Number(workStartsFromMinutes)
+      );
+
+      let Ahours = Number(hoursTL) + Number(workStartsFromHours);
+      let Aminutes = Number(minutesTL);
+
+      if (Ahours < 10) Ahours = `0${Ahours}`;
+      if (Aminutes < 10) Aminutes = `0${Aminutes}`;
+
+      schedule.push({
+        time: Ahours + ":" + Aminutes,
+        status: 0,
+        id,
+      });
+
+      const lunTime =
+        Number(calcTimeToMinutes(Ahours).minutesTM) + Number(Aminutes);
+      const futTime =
+        Number(calcTimeToMinutes(Ahours).minutesTM) +
+        Number(Aminutes) +
+        Number(session_time);
+      const endBreak =
+        Number(calcTimeToMinutes(breakfromHours).minutesTM) +
+        Number(breakfromMinutes) +
+        Number(break_time_for);
+      const startBreak =
+        Number(calcTimeToMinutes(breakfromHours).minutesTM) +
+        Number(breakfromMinutes);
+
+      if (
+        (futTime > startBreak && futTime < endBreak) ||
+        (lunTime > startBreak && lunTime < endBreak)
+      )
+        schedule.splice(i, 1);
+    }
+
+    for (let j = 0; j < schedule.length; j++) {
+      let k = schedule[j].time.split(":");
+      let d;
+      if (Boolean(j + 1)) {
+        d = schedule[j + 1].time.split(":");
+      } else return;
+
+      let hL1 = k[0];
+      let mL1 = k[1];
+      let hL2 = d[0];
+      let mL2 = d[1];
+
+      let minutes_1 = Number(calcTimeToMinutes(hL1).minutesTM) + Number(mL1);
+      let minutes_2 = Number(calcTimeToMinutes(hL2).minutesTM) + Number(mL2);
+
+      const endBreak =
+        Number(calcTimeToMinutes(breakfromHours).minutesTM) +
+        Number(breakfromMinutes) +
+        Number(break_time_for);
+
+      if (endBreak > minutes_1 && endBreak < minutes_2) {
+        schedule.splice(j, 1);
+        schedule.splice(j + 1, 1);
+      }
+    }
+  } catch (e) {}
+
+  try {
+    for (let d = 0; d < db.range_of_seats; d++) {
+      const week_idx = Math.round(d / 7) + 1;
+      for (let k = 0; k < week_idx; k++) {
+        if (k > key) {
+          weekSch[`week_${k}`] = {};
+          weekSch[`week_${k}`].mon = schedule;
+          weekSch[`week_${k}`].tue = schedule;
+          weekSch[`week_${k}`].wed = schedule;
+          weekSch[`week_${k}`].thu = schedule;
+          weekSch[`week_${k}`].fri = schedule;
+          weekSch[`week_${k}`].sat = schedule;
+          weekSch[`week_${k}`].sun = schedule;
+        }
+      }
+    }
+  } catch (e) {}
+  candidate.buisness_acc.structure.sections = weekSch;
+
+  await Users.findOneAndUpdate(
+    { user_telegram_id: ctx.from.id, role: 1 },
+    { buisness_acc: candidate.buisness_acc }
+  );
+
   await ctx.reply(
     "Параметры установлены. ( /plan - для обзора вашего расписания )"
   );
   return ctx.scene.leave();
+});
+
+const calcTimeToMinutes = (time) => {
+  let minutesTM = Number(time * 60);
+  return { minutesTM };
+};
+
+const calcTime = (time) => {
+  let hoursTL = Number(Math.floor(time / 60));
+  let minutesTL = Number(time % 60);
+  return { hoursTL, minutesTL };
+};
+
+bot.command("clc", async (ctx) => {
+  const week_idx = Math.floor(28 / 7) + 1;
+
+  console.log(week_idx);
 });
 
 // scheduleBreakOption_3
@@ -1043,8 +1256,7 @@ const scheduleBreak_3 = Telegraf.on("callback_query", async (ctx) => {
 
   if (data === "sch_sun_sat") session.push("Суббота", "Воскресенье");
 
-  if (data === 'no_sch_break') session.push('Без выходных')
-
+  if (data === "no_sch_break") session.push("Без выходных");
 
   /////////////////////////////////////////////////////////////////////////////// ------ Data ~~~ ++!!!!!!
 
@@ -1447,49 +1659,6 @@ bot.command("plan", async (ctx) => {
   const type = candidate.buisness_acc.structure.type;
 
   if (type === "plain") {
-    const time_from = candidate.buisness_acc.structure.work_time_from;
-    const time_to = candidate.buisness_acc.structure.work_time_to;
-    const session_time = candidate.buisness_acc.structure.session_for;
-    const break_time_for = candidate.buisness_acc.structure.break_for;
-
-    const d = new Date(
-      2015,
-      0,
-      2,
-      Number(time_from.split(":")[0]),
-      time_from.split(":")[1].split("").splice(0, 2).join("")
-    );
-
-    const f = new Date(
-      2015,
-      0,
-      2,
-      Number(time_to.split(":")[0]),
-      time_to.split(":")[1].split("").splice(0, 2).join("")
-    );
-
-    const totalMinutesWB = date.subtract(f, d).toMinutes();
-
-    const totalMinutes = totalMinutesWB - break_time_for;
-
-    const session_times = totalMinutes / session_time;
-
-    const daily_schedule = [];
-
-    for (let i = 0; i <= session_times; i++) {
-      let id = rndId(
-        50,
-        `${
-          (ctx.from.id,
-          ctx.from.first_name,
-          ctx.from.last_name,
-          Math.random() * session_time)
-        }${i - 1}`
-      );
-      let obj = { tm: i * session_time, id };
-
-      daily_schedule.push(obj);
-    }
   }
   if (type === "structural") {
     ctx.session.result = {};
@@ -1512,6 +1681,8 @@ bot.command("plan", async (ctx) => {
     );
   }
 });
+
+bot.command("time", async (ctx) => {});
 
 let placeIsConfirmed = false;
 let sectionIsConfirmed = false;
